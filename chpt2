@@ -1,0 +1,77 @@
+# HFP
+Head_First_Python
+
+
+챕터 2 : 리스트 자료구조
+
+특징 : 동적으로 할당되어 있어서, append를 지원한다. 
+
+nums = [1,2,3,4] //선언하기
+
+
+nums.remove(member) : member를 탐색하여 제거하고, 크기를 1 줄인다.
+
+nums.pop(index) : 매개변수 없는 디폴트 메서드는 가장 마지막 인덱스의 값을 제거하고 크기를 1 줄인다. 기본적으로는 index에 할당된 값을 제거하는 역할이다.
+ㄴ>C++ vector의 pop과는 다르게, python list 의 pop은 제거한 원소를 출력값으로 뱉어낸다.
+
+nums.extend(list) : list 리스트를 nums 의 끝에 합친다.
+
+nums.insert(index,obj) : obj를, "index 의 앞에" 삽입한다.
+
+==============================
+list 의 복사
+
+1. first = second
+ㄴ>이건 c++ 계열의 얕은 복사다. 포인터가 복사된 것과 마찬가지이며, second 와 first 는 같은 데이터 위치를 가르킨다.
+
+2. third = sencond.copy()
+ㄴ>이것이 python list 의 deep copy 동작이다
+===============================
+문자열 & list 포멧 전환
+
+old_string = "           " 로 표현
+old_list = [] 로 표현
+
+new_list = list(old_string)
+new_string = ''.join(old_list)
+===============================
+음의 index
+
+기본적으로 음의 인덱스라는 것이 있다. -1 인덱스가 가장 마지막 인덱스를 가리킨다.
+
+===============================
+대괄호, start, stop, step 을 사용한 slice
+
+range(start,stop,step) : 임시 list 객체를 생성한다.
+
+pszParam[start:stop:step] : psaParam 의 index를 기준으로 slice한 임시객체다. 
+ㄴ>기본값들 - start:0 / stop:pszParam 의 마지막 index / step:1
+
+*아래에서 얘기할 음의 인덱스를 활용하면, step 을 음수로 설정하여 거꾸로 slice를 할 수 있다
+ex)pszParam[::-1]
+
+*생략 문법
+[::step] = [0:n:step] 
+[start:] = [start:n:1]
+[:stop] = [0:stop:1]
+[start:stop] = [start:stop:1]
+
+
+
+=================================
+특수문자와 따옴표
+
+c++에서는..
+
+1.문자열 안에 특정 특수문자들을 입력할때  - \' - 와 같이 해야 했었다.
+2.char 는 작은 따옴표, string 은 큰 따옴표를 사용하여 표현하였다.
+
+1.python list 는 작은 따옴표를 "'" 와 같이 표현할 수 있다. 
+2.char과 string 을 가리지 않고 작은 따옴표, 큰 따옴표가 모두 사용 가능하다.
+=================================
+
+
+
+
+
+
