@@ -30,7 +30,7 @@ range(n) 함수 : 0~n-1 까지 등차가 1인 수열을 만들어낸다.
 
 for i in range(n) : i라는 반복인자가 0~n-1 의 양상으로 증가하며 명령문을 실행시킨다.
 
-for i in range(stop,start,step) : start 에서부터 stop 까지 등차수열로, 등차는 step 으로 명령문을 실행시킨다.
+for i in range(start,stop,step) : start 에서부터 stop 까지 등차수열로, 등차는 step 으로 명령문을 실행시킨다.
 
 *range 함수는 근본적으로 정수리스트를 만들어 i를 그 안에서 순회시키는 방식으로 작동된다.
 만약 range 자리에 문자열(말하자면 char 리스트)를 집어넣으면, i는 내부의 문자를 한글자씩 읽으며 순회한다.
