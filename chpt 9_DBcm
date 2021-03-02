@@ -1,0 +1,54 @@
+# HFP
+Head_First_Python
+
+
+이전 장에서 배운 바를 토대로 context manager 를 사용해 본다
+
+우리는 지금까지 무엇을 배웠는가?
+
+
+1. MySQL의 cursor 생성, 데이터 즉시 입력, cursor close 과정은 계속해서 재사용 할 수 있다는 걸 확인하였다.
+2. 매 사용 시마다 달라지는 것은 _SQL 에 전달되는 질의일 뿐이다.
+
+
+
+
+===============
+with 문과 관련된 오버로딩
+
+with 문에 객체가 사용되면, 우리는 __enter__ 와 _exit__ 메서드를 사용할 수 있게 된다.
+
+두 오버로딩은 with 문을 통해 컨텍스트 관리자가 생성되고 종료될 때의 동작을 결정한다.
+
+1. DBcm 시작 시 dbconfig 의 전달, cursor 의 생성이 이루어져야 한다. enter는 생성된 cursor를 반환한다. 
+2. DBcm 종료 시 데이터베이스에 작업 즉시 실행, 커서 및 커넥터 종료가 이루어져야 한다.
+
++DBcm 관련 패키지가 mysql connector 의 import 까지 도맡아 주면 편할 것이다.
+
+
+
+앞서 8장에서 배운 클래스 관련 문법들 (ex:속성 앞에 self. 꼭 붙이기, 메서드에 self 전달하기 등..) 을 활용하여..
+
+self.conn, self.cursor 의 생성과 종료를 자동화하였다!
+
+
+================
+DBcm의 활용
+
+이제 어느 IDLE 환경에서든, DBcm 패키지를 import 하여 사용할 수 있다.
+
+with UseDataBase(dbconfig) as cursor: 
+
+ㄴ>앞서 enter 가 cursor 를 반환하도록 하였다. 컨텍스트 관리자 객체는 cursor 에 할당되는 것.
+ㄴ>이제 cursor 를 진짜 앞의 귀찮은 프로세스들을 거친 cursor 로 활용할 수 있다.
+ㄴ>_SQL 질의를 cursor에 전달하여 execute 할 수 있다.
+ㄴ>전역변수를 생성하여 cursor.fetchall() 하면 결과가 잘 전달된다.
+ㄴ>따로 close 를 해줄 필요가 없다.
+
+===============
+모체 코드에 적용하자.
+
+1. log_request 를 통해 log 가 MySQL 에 기록되는 프로세스를 DBcm 을 활용하도록 바꾼다.
+2. /viewlog URL에서의 동작을(현재 아직도 .log 파일의 텍스트를 활용하는 중) DBcm을 사용하여 MySQL 동작으로 바꾼다.
+
+
