@@ -51,4 +51,23 @@ with UseDataBase(dbconfig) as cursor:
 1. log_request 를 통해 log 가 MySQL 에 기록되는 프로세스를 DBcm 을 활용하도록 바꾼다.
 2. /viewlog URL에서의 동작을(현재 아직도 .log 파일의 텍스트를 활용하는 중) DBcm을 사용하여 MySQL 동작으로 바꾼다.
 
+어떻게 적용할 것인가?
+
+1. 우리는 우선 MySQL log 를 가져와야 한다.
+ㄴ>select 질의를 사용할 것이다.
+ㄴ>"""select phrase, letters, ip, browser_string, results from log""" 
+
+ㄴ>본래 select * from log 는 전체 로그를 가져와서 디스플레이하는 SQL 질의이다.
+
+2. 위에 나열된 contents 로 구성된 행들이 cursor에 구성된다.
+ㄴ>viewlog html은 "리스트의 리스트"를 필요로 한다. 위 질의는 리스트의 리스트를 생성하는 것이다.
+
+3.cursor 에 담겼던 것을 contents 에 옮기고, 이것을 render_template에 전달한다.
+
+4. .log파일을 사용하던 때와 정확히 같은 양식의 웹페이지 구성 완료.
+
+
+===============
+
+
 
